@@ -71,6 +71,64 @@ public class CalcActivity extends AppCompatActivity {
                 score.setText("000점 입니다.");
             }
         });
-
+        calc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int result=0;
+                result+=(editTextToInt(go)+plus(editTextToInt(pi)-9)+plus(editTextToInt(di)-4)+plus(editTextToInt(kkeut)-4));
+                if(editTextToInt(light)==3){
+                    if(bi.isChecked()){
+                        result+=2;
+                    }else{
+                        result+=3;
+                    }
+                }else if(editTextToInt(light)==4){
+                    result+=4;
+                }else if(editTextToInt(light)==5){
+                    result+=15;
+                }
+                if(blue_dan.isChecked()){
+                    result+=3;
+                }
+                if(red_dan.isChecked()){
+                    result+=3;
+                }
+                if(cho_dan.isChecked()){
+                    result+=3;
+                }
+                if(dori.isChecked()){
+                    result+=5;
+                }
+                for(int i=0;i<editTextToInt(bomb);i++){
+                    result*=2;
+                }
+                if(pi_bak.isChecked()){
+                    result*=2;
+                }
+                if(light_bak.isChecked()){
+                    result*=2;
+                }
+                if(mung_bak.isChecked()){
+                    result*=2;
+                }
+                if(guri.isChecked()){
+                    result*=2;
+                }
+                if(gari.isChecked()){
+                    result*=2;
+                }
+                for(int i=0;i<editTextToInt(go)-2;i++){
+                    result*=2;
+                }
+                score.setText(result+"점 입니다.");
+            }
+        });
+    }
+    public int plus(int insert){
+        if(insert<0)return 0;
+        return insert;
+    }
+    public int editTextToInt(EditText e){
+        return Integer.parseInt(e.getText().toString());
     }
 }
