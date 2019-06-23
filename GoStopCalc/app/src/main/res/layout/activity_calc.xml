@@ -71,15 +71,15 @@
                 android:background="@android:color/transparent"
                 android:hint="0"
                 android:textColor="@color/TVcolor"
-                android:textSize="30dp" />
+                android:textSize="30dp"
+                android:id="@+id/kkeut"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="열끗"
                 android:textColor="@color/TVcolor"
-                android:textSize="30dp"
-                android:id="@+id/kkeut"/>
+                android:textSize="30dp"/>
         </LinearLayout>
     </LinearLayout>
 

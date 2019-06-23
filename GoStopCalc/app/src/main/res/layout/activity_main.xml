@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ray1203.gostopcalc.MainActivity">
+    android:orientation="vertical"
 
-    <TextView
-        android:layout_width="wrap_content"
+    android:gravity="center_horizontal">
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:scaleType="center"
+        android:adjustViewBounds="true"
+        android:background="@drawable/palgwang"/>
 
-</android.support.constraint.ConstraintLayout>
+
+        <Button
+            android:layout_width="220dp"
+            android:layout_height="225dp"
+            android:background="@drawable/round_btn"
+            android:layout_marginTop="50dp"
+            android:text="계          산"
+            android:textSize="55dp"
+            android:fontFamily="@font/gungseo"
+            android:id="@+id/btn_cal"
+            android:layout_centerHorizontal="true"
+
+            />
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/round_btn"
+            android:text="기 확          록 인"
+            android:textSize="36dp"
+            android:fontFamily="@font/gungseo"
+            android:id="@+id/btn_rec"
+            android:layout_below="@+id/btn_cal"
+            android:layout_centerHorizontal="true"
+            />
+
+
+
+
+</RelativeLayout>
