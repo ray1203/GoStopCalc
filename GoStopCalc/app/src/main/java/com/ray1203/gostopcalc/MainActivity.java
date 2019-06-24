@@ -26,7 +26,8 @@ Button cal,rec;
         rec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i=new Intent(MainActivity.this,HistoryActivity.class);
+                startActivity(i);
             }
         });
     }

@@ -2,7 +2,9 @@ package com.ray1203.gostopcalc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -123,12 +125,31 @@ public class CalcActivity extends AppCompatActivity {
                 score.setText(result+"점 입니다.");
             }
         });
+        CHECK_RECORDS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(CalcActivity.this,RecordActivity.class);
+                startActivity(i);
+            }
+        });
+        CHECK_HISTORY.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(CalcActivity.this,HistoryActivity.class);
+                startActivity(i);
+            }
+        });
     }
     public int plus(int insert){
         if(insert<0)return 0;
         return insert;
     }
     public int editTextToInt(EditText e){
-        return Integer.parseInt(e.getText().toString());
+        try{
+            return Integer.parseInt(e.getText().toString());
+        }catch (Exception e1){
+            return 0;
+        }
+
     }
 }
