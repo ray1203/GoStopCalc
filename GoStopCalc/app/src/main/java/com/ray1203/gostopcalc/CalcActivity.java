@@ -6,43 +6,58 @@ import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CalcActivity extends AppCompatActivity {
-    EditText go,pi,di,kkeut,bomb,light;
-    CheckBox bi,blue_dan,red_dan,cho_dan,pi_bak,light_bak,mung_bak,dori,guri,gari;
-    Button calc,CHECK_RECORDS,CHECK_HISTORY,reset,toMain;
+    EditText go,pi,ddi,kkeut,bomb,gwang;
+    CheckBox bi,chung_dan,hong_dan,cho_dan,
+            pi_bak,gwang_bak,mung_bak,
+            godori,mungtungguri,nagari;
+    Button calc,CHECK_RECORDS,CHECK_HISTORY,RESET,toMain;
     TextView score;
+    int result=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
+
         go = findViewById(R.id.go);
         pi=findViewById(R.id.pi);
-        di=findViewById(R.id.di);
+        ddi=findViewById(R.id.ddi);
         kkeut=findViewById(R.id.kkeut);
         bomb=findViewById(R.id.bomb);
-        light=findViewById(R.id.light);
+        gwang=findViewById(R.id.gwang);
         bi=findViewById(R.id.bi);
-        blue_dan=findViewById(R.id.blue_dan);
-        red_dan=findViewById(R.id.red_dan);
+
+        chung_dan=findViewById(R.id.chung_dan);
+        hong_dan=findViewById(R.id.hong_dan);
         cho_dan=findViewById(R.id.cho_dan);
+
         pi_bak=findViewById(R.id.pi_bak);
-        light_bak=findViewById(R.id.light_bak);
+        gwang_bak=findViewById(R.id.gwang_bak);
         mung_bak=findViewById(R.id.mung_bak);
-        dori = findViewById(R.id.dori);
-        guri=findViewById(R.id.guri);
-        gari=findViewById(R.id.gari);
+
+        godori = findViewById(R.id.godori);
+        mungtungguri=findViewById(R.id.mungtungguri);
+        nagari=findViewById(R.id.nagari);
+
         calc=findViewById(R.id.calc);
         CHECK_RECORDS=findViewById(R.id.CHECK_RECORDS);
         CHECK_HISTORY = findViewById(R.id.CHECK_HISTORY);
-        reset=findViewById(R.id.reset);
+        RESET=findViewById(R.id.RESET);
         toMain = findViewById(R.id.toMain);
+
         score =findViewById(R.id.score);
+
         toMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,78 +66,95 @@ public class CalcActivity extends AppCompatActivity {
                 finish();
             }
         });
-        reset.setOnClickListener(new View.OnClickListener() {
+        RESET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 go.setText(null);
                 pi.setText(null);
-                di.setText(null);
+                ddi.setText(null);
                 kkeut.setText(null);
                 bomb.setText(null);
-                light.setText(null);
+                gwang.setText(null);
                 bi.setChecked(false);
-                blue_dan.setChecked(false);
-                red_dan.setChecked(false);
+
+                chung_dan.setChecked(false);
+                hong_dan.setChecked(false);
                 cho_dan.setChecked(false);
+
                 pi_bak.setChecked(false);
-                light_bak.setChecked(false);
+                gwang_bak.setChecked(false);
                 mung_bak.setChecked(false);
-                dori.setChecked(false);
-                guri.setChecked(false);
-                gari.setChecked(false);
+
+                godori.setChecked(false);
+                mungtungguri.setChecked(false);
+                nagari.setChecked(false);
+
                 score.setText("000점 입니다.");
             }
         });
         calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int result=0;
-                result+=(editTextToInt(go)+plus(editTextToInt(pi)-9)+plus(editTextToInt(di)-4)+plus(editTextToInt(kkeut)-4));
-                if(editTextToInt(light)==3){
+                result+=(editTextToInt(go)+
+                        plus(editTextToInt(pi)-9)+
+                        plus(editTextToInt(ddi)-4)+
+                        plus(editTextToInt(kkeut)-4));//고,피,띠,열끗의 점수 합
+
+                if(editTextToInt(gwang)==3){
                     if(bi.isChecked()){
-                        result+=2;
+                        result+=2;//비광:2점
                     }else{
-                        result+=3;
+                        result+=3;//3광:3점
                     }
-                }else if(editTextToInt(light)==4){
-                    result+=4;
-                }else if(editTextToInt(light)==5){
-                    result+=15;
+                }else if(editTextToInt(gwang)==4){
+                    result+=4;//4광:4점
+                }else if(editTextToInt(gwang)==5){
+                    result+=15;//5광:15점
                 }
-                if(blue_dan.isChecked()){
-                    result+=3;
+
+                if(chung_dan.isChecked()){
+                    result+=3;//청단:3점
                 }
-                if(red_dan.isChecked()){
-                    result+=3;
+                if(hong_dan.isChecked()){
+                    result+=3;//홍단:3점
                 }
                 if(cho_dan.isChecked()){
-                    result+=3;
+                    result+=3;//초단:3점
                 }
-                if(dori.isChecked()){
-                    result+=5;
+
+                if(godori.isChecked()){
+                    result+=5;//고도리:5점
                 }
-                for(int i=0;i<editTextToInt(bomb);i++){
-                    result*=2;
-                }
+
                 if(pi_bak.isChecked()){
-                    result*=2;
+                    result*=2;//피박:2배
                 }
-                if(light_bak.isChecked()){
-                    result*=2;
+                if(gwang_bak.isChecked()){
+                    result*=2;//광박:2배
                 }
                 if(mung_bak.isChecked()){
-                    result*=2;
+                    result*=2;//멍박:2배
                 }
-                if(guri.isChecked()){
-                    result*=2;
+
+                for(int i=0;i<editTextToInt(bomb);i++){
+                    result*=2;//흔들기/폭탄:횟수만큼 2배
                 }
-                if(gari.isChecked()){
-                    result*=2;
+                if(mungtungguri.isChecked()){
+                    result*=2;//멍텅구리:2배
+                }
+                if(nagari.isChecked()){
+                    result*=2;//전판 나가리:2배
                 }
                 for(int i=0;i<editTextToInt(go)-2;i++){
-                    result*=2;
+                    result*=2;//3고부터 1고마다 2배
                 }
-                score.setText(result+"점 입니다.");
+
+                if(result!=0){
+                    score.setText(result+"점 입니다.");
+                    //
+                }
+                else
+                    Toast.makeText(CalcActivity.this, "점수가 없습니다.", Toast.LENGTH_SHORT).show();
             }
         });
         CHECK_RECORDS.setOnClickListener(new View.OnClickListener() {

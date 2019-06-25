@@ -295,21 +295,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_weight="4"
+        android:layout_weight="3"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:gravity="center_horizontal">
-        <Button
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="계산"
-            android:id="@+id/calc"/>
 
         <TextView
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="000점 입니다."
             android:textColor="@color/TVcolor"
@@ -317,31 +310,13 @@
             android:id="@+id/score"/>
 
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_horizontal">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="임시 기록 확인"
-                android:id="@+id/CHECK_RECORDS"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="역대 기록 확인"
-                android:id="@+id/CHECK_HISTORY"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="리셋"
-                android:id="@+id/RESET"/>
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"/>
 
         <Button
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:text="메인화면으로"
             android:id="@+id/toMain"
             android:background="#00000000"/>
