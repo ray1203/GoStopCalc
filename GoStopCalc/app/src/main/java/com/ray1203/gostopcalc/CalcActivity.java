@@ -1,5 +1,6 @@
 package com.ray1203.gostopcalc;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
@@ -24,12 +25,13 @@ public class CalcActivity extends AppCompatActivity {
     Button calc,CHECK_RECORDS,CHECK_HISTORY,RESET,toMain;
     TextView score;
     int result=0;
-
+    public ArrayList<ListViewItem> arrayList;
+    public static Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
-
+        arrayList = new ArrayList<>();
         go = findViewById(R.id.go);
         pi=findViewById(R.id.pi);
         ddi=findViewById(R.id.ddi);
@@ -95,6 +97,7 @@ public class CalcActivity extends AppCompatActivity {
         calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                result=0;
                 result+=(editTextToInt(go)+
                         plus(editTextToInt(pi)-9)+
                         plus(editTextToInt(ddi)-4)+
@@ -155,13 +158,15 @@ public class CalcActivity extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(CalcActivity.this, "점수가 없습니다.", Toast.LENGTH_SHORT).show();
+                arrayList.add(new ListViewItem(result,editTextToInt(go),editTextToInt(pi),editTextToInt(ddi),editTextToInt(kkeut),editTextToInt(bomb),editTextToInt(gwang),bi.isChecked(),chung_dan.isChecked(),hong_dan.isChecked(),cho_dan.isChecked(),pi_bak.isChecked(),gwang_bak.isChecked(),mung_bak.isChecked(),godori.isChecked(),mungtungguri.isChecked(),nagari.isChecked()));
             }
         });
         CHECK_RECORDS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(CalcActivity.this,RecordActivity.class);
-                startActivity(i);
+                i.putExtra("list",arrayList);
+                startActivityForResult(i,0);
             }
         });
         CHECK_HISTORY.setOnClickListener(new View.OnClickListener() {
@@ -183,5 +188,12 @@ public class CalcActivity extends AppCompatActivity {
             return 0;
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        arrayList.clear();
+        arrayList.addAll((ArrayList<ListViewItem>)data.getSerializableExtra("list"));
     }
 }

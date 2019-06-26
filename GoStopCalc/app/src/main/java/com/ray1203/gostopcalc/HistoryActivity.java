@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -35,8 +33,8 @@ Button tore,deleteAll;
         arrayList.add(new ListViewItem(1,2,3,4,5,6,7,true,false,true,false,true,false,true,false,true,false));
         arrayList.add(new ListViewItem());
         arrayList.add(new ListViewItem());
-        final ListViewAdapter adapter;
-        adapter=new ListViewAdapter();
+        final HistoryListViewAdapter adapter;
+        adapter=new HistoryListViewAdapter();
         listView.setAdapter(adapter);
         for(int i=0;i<arrayList.size();i++){
             adapter.addItem(arrayList.get(i));

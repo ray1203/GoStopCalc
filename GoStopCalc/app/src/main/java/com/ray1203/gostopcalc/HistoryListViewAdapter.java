@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ListViewAdapter extends BaseAdapter {
+public class HistoryListViewAdapter extends BaseAdapter {
     private ArrayList<ListViewItem> listViewItemList=new ArrayList<>();
     @Override
     public int getCount() {

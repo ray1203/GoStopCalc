@@ -33,6 +33,7 @@ public class ListViewItem implements Serializable {
         this.kkeut = kkeut;
         this.bomb = bomb;
         this.gwang = gwang;
+
         this.bi = bi;
         this.chung_dan = chung_dan;
         this.hong_dan = hong_dan;

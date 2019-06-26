@@ -19,12 +19,14 @@
         android:layout_height="match_parent"
         android:gravity="right">
         <Button
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="기록저장"
             android:id="@+id/save"/>
         <Button
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="기록삭제"
             android:id="@+id/delete"/>

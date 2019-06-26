@@ -16,7 +16,7 @@ public class CalcShowActivity extends AppCompatActivity {
     CheckBox bi,chung_dan,hong_dan,cho_dan,
             pi_bak,gwang_bak,mung_bak,
             godori,mungtungguri,nagari;
-    Button toMain;
+    Button back;
     TextView score;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class CalcShowActivity extends AppCompatActivity {
         mungtungguri = findViewById(R.id.mungtungguri);
         nagari = findViewById(R.id.nagari);
 
-        toMain = findViewById(R.id.toMain);
+        back = findViewById(R.id.back);
 
         score = findViewById(R.id.score);
         ListViewItem listViewItem;
@@ -66,13 +66,12 @@ public class CalcShowActivity extends AppCompatActivity {
         mungtungguri.setChecked(listViewItem.isMungtungguri());
         nagari.setChecked(listViewItem.isNagari());
         score.setText(listViewItem.getScore()+"점 입니다.");
-        toMain.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(CalcShowActivity.this, MainActivity.class);
-                startActivity(i);
                 finish();
             }
         });
+
     }
 }
