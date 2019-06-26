@@ -4,10 +4,18 @@ import java.io.Serializable;
 
 public class ListViewItem implements Serializable {
     private int score,go,
-                pi,ddi,kkeut,bomb,gwang;
+                pi,ddi,kkeut,bomb,gwang,_ID;
     private boolean bi,chung_dan,hong_dan,cho_dan,
                     pi_bak,gwang_bak,mung_bak,
                     godori,mungtungguri,nagari;
+
+    public int get_ID() {
+        return _ID;
+    }
+
+    public void set_ID(int _ID) {
+        this._ID = _ID;
+    }
 
     public int getScore() {
         return score;
@@ -23,6 +31,7 @@ public class ListViewItem implements Serializable {
         bi=false;chung_dan=false;hong_dan=false;cho_dan=false;
         pi_bak=false;gwang_bak=false;mung_bak=false;
         godori=false;mungtungguri=false;nagari=false;
+
     }
 
     public ListViewItem(int score, int go, int pi, int ddi, int kkeut, int bomb, int gwang, boolean bi, boolean chung_dan, boolean hong_dan, boolean cho_dan, boolean pi_bak, boolean gwang_bak, boolean mung_bak, boolean godori, boolean mungtungguri, boolean nagari) {
@@ -45,7 +54,27 @@ public class ListViewItem implements Serializable {
         this.mungtungguri = mungtungguri;
         this.nagari = nagari;
     }
+    public ListViewItem(int score, int go, int pi, int ddi, int kkeut, int bomb, int gwang, boolean bi, boolean chung_dan, boolean hong_dan, boolean cho_dan, boolean pi_bak, boolean gwang_bak, boolean mung_bak, boolean godori, boolean mungtungguri, boolean nagari,int _ID) {
+        this.score = score;
+        this.go = go;
+        this.pi = pi;
+        this.ddi = ddi;
+        this.kkeut = kkeut;
+        this.bomb = bomb;
+        this.gwang = gwang;
 
+        this.bi = bi;
+        this.chung_dan = chung_dan;
+        this.hong_dan = hong_dan;
+        this.cho_dan = cho_dan;
+        this.pi_bak = pi_bak;
+        this.gwang_bak = gwang_bak;
+        this.mung_bak = mung_bak;
+        this.godori = godori;
+        this.mungtungguri = mungtungguri;
+        this.nagari = nagari;
+        this._ID=_ID;
+    }
     public void setGo(int g) {
         go=g;
     }

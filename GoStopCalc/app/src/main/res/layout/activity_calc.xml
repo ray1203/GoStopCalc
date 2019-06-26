@@ -26,13 +26,14 @@
                 android:hint="0"
                 android:textColor="@color/TVcolor"
                 android:textSize="30dp"
+                android:singleLine="true"
                 android:id="@+id/go"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="고"
                 android:textColor="@color/TVcolor"
-                android:textSize="30dp" />
+                android:textSize="30dp"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -41,7 +42,8 @@
                 android:hint="0"
                 android:textColor="@color/TVcolor"
                 android:textSize="30dp"
-                android:id="@+id/pi"/>
+                android:singleLine="true"
+                android:id="@+id/pi" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -56,7 +58,8 @@
                 android:hint="0"
                 android:textColor="@color/TVcolor"
                 android:textSize="30dp"
-                android:id="@+id/ddi"/>
+                android:singleLine="true"
+                android:id="@+id/ddi" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -71,13 +74,14 @@
                 android:hint="0"
                 android:textColor="@color/TVcolor"
                 android:textSize="30dp"
-                android:id="@+id/kkeut"/>
+                android:singleLine="true"
+                android:id="@+id/kkeut" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="열끗"
                 android:textColor="@color/TVcolor"
-                android:textSize="30dp"/>
+                android:textSize="30dp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -97,6 +101,7 @@
                 android:hint="0"
                 android:textColor="@color/TVcolor"
                 android:textSize="30dp"
+                android:singleLine="true"
                 android:id="@+id/bomb"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -124,6 +129,7 @@
                 android:hint="0"
                 android:textColor="@color/TVcolor"
                 android:textSize="30dp"
+                android:singleLine="true"
                 android:id="@+id/gwang"/>
             <TextView
                 android:layout_width="wrap_content"

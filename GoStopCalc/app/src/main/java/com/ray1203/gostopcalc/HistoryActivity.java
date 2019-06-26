@@ -2,9 +2,12 @@ package com.ray1203.gostopcalc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -19,6 +22,7 @@ Button tore,deleteAll;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+        DBHelper helper = new DBHelper(this);
         listView = findViewById(R.id.listView);
         final ArrayList<ListViewItem> arrayList = new ArrayList<>();//DB에서 값 저장->전부 어댑터에 추가
         tore=findViewById(R.id.toRe);
@@ -30,9 +34,27 @@ Button tore,deleteAll;
             }
         });
 
-        arrayList.add(new ListViewItem(1,2,3,4,5,6,7,true,false,true,false,true,false,true,false,true,false));
-        arrayList.add(new ListViewItem());
-        arrayList.add(new ListViewItem());
+        final SQLiteDatabase db=helper.getWritableDatabase();
+        String sql="select * from gostop_data";
+        Cursor cursor=db.rawQuery(sql,null);
+        cursor.moveToFirst();
+        try{
+            do{
+                arrayList.add(new ListViewItem(cursor.getInt(0),cursor.getInt(1),cursor.getInt(2),
+                        cursor.getInt(3),cursor.getInt(4),cursor.getInt(5),cursor.getInt(6),
+                        cursor.getInt(7)>0,cursor.getInt(8)>0,cursor.getInt(9)>0,cursor.getInt(10)>0,
+                        cursor.getInt(11)>0,cursor.getInt(12)>0,cursor.getInt(13)>0,cursor.getInt(14)>0,
+                        cursor.getInt(15)>0,cursor.getInt(16)>0,cursor.getInt(17)));
+            }
+            while(cursor.moveToNext());
+        }catch (Exception e){
+            db.execSQL("DROP TABLE gostop_data");
+        }
+
+
+//        arrayList.add(new ListViewItem(1,2,3,4,5,6,7,true,false,true,false,true,false,true,false,true,false));
+//        arrayList.add(new ListViewItem());
+//        arrayList.add(new ListViewItem());
         final HistoryListViewAdapter adapter;
         adapter=new HistoryListViewAdapter();
         listView.setAdapter(adapter);
@@ -61,6 +83,7 @@ Button tore,deleteAll;
                             public void onClick(DialogInterface dialog, int which) {
                                 arrayList.clear();
                                 adapter.deleteAll();
+                                db.execSQL("delete from gostop_data");
                             }
                         }).setNegativeButton("취소",
                         new DialogInterface.OnClickListener() {
@@ -75,4 +98,5 @@ Button tore,deleteAll;
             }
         });
     }
+    @Override public void onBackPressed() { }
 }

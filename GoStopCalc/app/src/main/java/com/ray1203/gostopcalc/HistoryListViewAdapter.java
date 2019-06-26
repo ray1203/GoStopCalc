@@ -1,6 +1,7 @@
 package com.ray1203.gostopcalc;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,11 @@ public class HistoryListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 listViewItemList.remove(pos);
                 notifyDataSetChanged();
+
+                DBHelper helper = new DBHelper(context);
+                SQLiteDatabase db=helper.getReadableDatabase();
+                String sql = "DELETE FROM gostop_data WHERE _ID = "+""+listViewItem.get_ID()+"";
+                db.execSQL(sql);
             }
         }) ;
         return convertView;

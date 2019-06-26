@@ -14,15 +14,16 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class RecordActivity extends AppCompatActivity {
-Button tocal,deleteAll;
+Button tocal,deleteAll,saveAll;
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
         tocal=findViewById(R.id.toCal);
         deleteAll=findViewById(R.id.deleteAll);
-
+        saveAll=findViewById(R.id.save);
         listView = findViewById(R.id.listView);
         final ArrayList<ListViewItem> arrayList = new ArrayList<>();
         Intent intent = getIntent();
@@ -78,7 +79,14 @@ Button tocal,deleteAll;
                 finish();
             }
         });
+        saveAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.saveAll();
+            }
+        });
 
 
     }
+    @Override public void onBackPressed() { }
 }

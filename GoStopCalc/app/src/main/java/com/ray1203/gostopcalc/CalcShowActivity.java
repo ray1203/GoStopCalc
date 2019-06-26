@@ -74,4 +74,5 @@ public class CalcShowActivity extends AppCompatActivity {
         });
 
     }
+    @Override public void onBackPressed() { }
 }

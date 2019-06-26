@@ -196,4 +196,5 @@ public class CalcActivity extends AppCompatActivity {
         arrayList.clear();
         arrayList.addAll((ArrayList<ListViewItem>)data.getSerializableExtra("list"));
     }
+    @Override public void onBackPressed() { }
 }
