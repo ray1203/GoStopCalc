@@ -10,8 +10,11 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import static com.ray1203.gostopcalc.CalcActivity.context;
 
 public class RecordListViewAdapter extends BaseAdapter {
     private Context parentContext;
@@ -52,6 +55,7 @@ public class RecordListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 listViewItemList.remove(pos);
                 notifyDataSetChanged();
+                Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
             }
         }) ;
         save.setOnClickListener(new View.OnClickListener() {
@@ -67,9 +71,7 @@ public class RecordListViewAdapter extends BaseAdapter {
                         +boolToInt(item.isPi_bak())+","+boolToInt(item.isGwang_bak())+","+boolToInt(item.isMung_bak())+","+boolToInt(item.isGodori())+","+boolToInt(item.isMungtungguri())+","
                         +boolToInt(item.isNagari())+")";
                     db.execSQL(sql);
-
-
-
+                Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
         return convertView;
@@ -80,6 +82,7 @@ public class RecordListViewAdapter extends BaseAdapter {
     public void deleteAll(){
         listViewItemList.clear();
         notifyDataSetChanged();
+        Toast.makeText(parentContext, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
     }
     public void saveAll(){
         DBHelper helper = new DBHelper(parentContext);
@@ -95,6 +98,7 @@ public class RecordListViewAdapter extends BaseAdapter {
                     +boolToInt(item.isNagari())+")";
             db.execSQL(sql);
         }
+        Toast.makeText(parentContext, "저장되었습니다.", Toast.LENGTH_SHORT).show();
     }
     public int boolToInt(boolean b){
         if(b)return 1;

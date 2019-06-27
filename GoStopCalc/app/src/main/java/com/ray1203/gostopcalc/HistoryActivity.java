@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -51,10 +52,6 @@ Button tore,deleteAll;
             db.execSQL("DROP TABLE gostop_data");
         }
 
-
-//        arrayList.add(new ListViewItem(1,2,3,4,5,6,7,true,false,true,false,true,false,true,false,true,false));
-//        arrayList.add(new ListViewItem());
-//        arrayList.add(new ListViewItem());
         final HistoryListViewAdapter adapter;
         adapter=new HistoryListViewAdapter();
         listView.setAdapter(adapter);
@@ -76,25 +73,28 @@ Button tore,deleteAll;
         deleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alert_confirm = new AlertDialog.Builder(HistoryActivity.this);
-                alert_confirm.setMessage("모든 기록을 삭제하시겠습니까?").setCancelable(false).setPositiveButton("확인",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                arrayList.clear();
-                                adapter.deleteAll();
-                                db.execSQL("delete from gostop_data");
-                            }
-                        }).setNegativeButton("취소",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                return;
-                            }
-                        });
-                AlertDialog alert = alert_confirm.create();
-                alert.show();
+                if(arrayList.size()==0)
+                    Toast.makeText(HistoryActivity.this, "데이터가 없습니다.", Toast.LENGTH_SHORT).show();
+                else{
+                    AlertDialog.Builder alert_confirm = new AlertDialog.Builder(HistoryActivity.this);
+                    alert_confirm.setMessage("모든 기록을 삭제하시겠습니까?").setCancelable(false).setPositiveButton("확인",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    arrayList.clear();
+                                    adapter.deleteAll();
+                                    db.execSQL("delete from gostop_data");
+                                }
+                            }).setNegativeButton("취소",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    return;
+                                }
+                            });
+                    AlertDialog alert = alert_confirm.create();
+                    alert.show();
+                }
             }
         });
     }

@@ -9,10 +9,12 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class HistoryListViewAdapter extends BaseAdapter {
+    private Context parentContext;
     private ArrayList<ListViewItem> listViewItemList=new ArrayList<>();
     @Override
     public int getCount() {
@@ -33,6 +35,7 @@ public class HistoryListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final int pos = position;
         final Context context = parent.getContext();
+        parentContext=context;
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -54,6 +57,7 @@ public class HistoryListViewAdapter extends BaseAdapter {
                 SQLiteDatabase db=helper.getReadableDatabase();
                 String sql = "DELETE FROM gostop_data WHERE _ID = "+""+listViewItem.get_ID()+"";
                 db.execSQL(sql);
+                Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
             }
         }) ;
         return convertView;
@@ -64,5 +68,6 @@ public class HistoryListViewAdapter extends BaseAdapter {
     public void deleteAll(){
         listViewItemList.clear();
         notifyDataSetChanged();
+        Toast.makeText(parentContext, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
     }
 }

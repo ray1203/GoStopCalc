@@ -154,11 +154,11 @@ public class CalcActivity extends AppCompatActivity {
 
                 if(result!=0){
                     score.setText(result+"점 입니다.");
-                    //
+                    arrayList.add(new ListViewItem(result,editTextToInt(go),editTextToInt(pi),editTextToInt(ddi),editTextToInt(kkeut),editTextToInt(bomb),editTextToInt(gwang),bi.isChecked(),chung_dan.isChecked(),hong_dan.isChecked(),cho_dan.isChecked(),pi_bak.isChecked(),gwang_bak.isChecked(),mung_bak.isChecked(),godori.isChecked(),mungtungguri.isChecked(),nagari.isChecked()));
+                    Toast.makeText(CalcActivity.this, "임시 기록에 현재 계산 결과가 저장되었습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else
                     Toast.makeText(CalcActivity.this, "점수가 없습니다.", Toast.LENGTH_SHORT).show();
-                arrayList.add(new ListViewItem(result,editTextToInt(go),editTextToInt(pi),editTextToInt(ddi),editTextToInt(kkeut),editTextToInt(bomb),editTextToInt(gwang),bi.isChecked(),chung_dan.isChecked(),hong_dan.isChecked(),cho_dan.isChecked(),pi_bak.isChecked(),gwang_bak.isChecked(),mung_bak.isChecked(),godori.isChecked(),mungtungguri.isChecked(),nagari.isChecked()));
             }
         });
         CHECK_RECORDS.setOnClickListener(new View.OnClickListener() {
