@@ -49,7 +49,7 @@ Button tore,deleteAll;
             }
             while(cursor.moveToNext());
         }catch (Exception e){
-            db.execSQL("DROP TABLE gostop_data");
+
         }
 
         final HistoryListViewAdapter adapter;
